@@ -3,11 +3,16 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
-  <NewExtensions/>
+  <NewExtensions>
+    <extension index="0">extensions\GoogleAnalyticsExt</extension>
+  </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_wall</sprite>
+    <sprite>sprites\spr_lightbulb</sprite>
+    <sprite>sprites\spr_ui_exit</sprite>
+    <sprite>sprites\spr_ui_quit</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -19,6 +24,9 @@
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_ps</object>
+    <object>objects\obj_light_control</object>
+    <object>objects\obj_lighting</object>
+    <object>objects\obj_lightbulb</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
