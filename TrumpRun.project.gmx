@@ -15,9 +15,12 @@
     <sprite>sprites\spr_ui_exit</sprite>
     <sprite>sprites\spr_obs_spike</sprite>
     <sprite>sprites\spr_lava_base</sprite>
+    <sprite>sprites\spr_water_base</sprite>
     <sprite>sprites\spr_lava_top</sprite>
-    <sprite>sprites\spr_tmp</sprite>
+    <sprite>sprites\spr_water_top</sprite>
     <sprite>sprites\spr_fire</sprite>
+    <sprite>sprites\spr_tmp</sprite>
+    <sprite>sprites\spr_tmp2</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
