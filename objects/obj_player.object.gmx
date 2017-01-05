@@ -26,13 +26,20 @@
           <argument>
             <kind>1</kind>
             <string>/// Initialize variables
-grav = .5;
-spd = 3;
-jspd = 12;
+grav = .5;      // gravity
+spd = 5;        // player speed
+jspd = 12;      // jump speed
+
+maxJumps = 2;   // double/triple jumps
+numJumps = 0;   //
+runDir = 0;     //0=right 1=left
+//shadAng = 0;
+
 hspd = 0;
 vspd = 0;
 draw_xscale = image_xscale;
 draw_yscale = image_yscale;
+
 
 </string>
           </argument>
@@ -57,40 +64,53 @@ draw_yscale = image_yscale;
           <argument>
             <kind>1</kind>
             <string>/// Movement
-var hspd = (keyboard_check(vk_right) - keyboard_check(vk_left))*spd;
-var jkey = keyboard_check(vk_up);
 
+var hspd = (keyboard_check(vk_right) - keyboard_check(vk_left))*spd;
+var jkey = keyboard_check_pressed(vk_up);
+
+if (hspd &gt; 0) runDir = 0;
+else if (hspd &lt; 0) runDir = 1;
 
 // Check for the ground
 if (place_meeting(x, y+1, obj_wall))
 {
      vspd = 0;
-
      if (jkey)
      {
-          vspd = -jspd;
-          draw_yscale = 1.5;
-          draw_xscale = .75;
+        vspd = -jspd;
+        draw_yscale = 1.5;
+        draw_xscale = .75;
+        numJumps += 1;
      }
+    else 
+    {
+        numJumps = 0;
+    }
 }
 else
 {
-     // Gravity
-     if (vspd &lt; 10)
-
-     {
-          vspd += grav;
-     }
+    // Gravity
+    if (vspd &lt; 10)
+    {
+        vspd += grav;
+    }
+    if (jkey) &amp;&amp; (numJumps &lt; maxJumps)
+    {
+        numJumps += 1;
+        vspd = -jspd;
+        draw_yscale *= 1.5;
+        draw_xscale *= 0.75
+    }
 }
 
 // Horizontal collisions
 if (place_meeting(x+hspd, y, obj_wall))
 {
-     while (!place_meeting(x+sign(hspd), y, obj_wall))
-     {
-          x += sign(hspd);
-     }
-     hspd = 0;
+    while (!place_meeting(x+sign(hspd), y, obj_wall))
+    {
+        x += sign(hspd);
+    }
+    hspd = 0;
 }
 
 // Move horizontally
@@ -101,7 +121,7 @@ if (place_meeting(x, y+vspd, obj_wall))
 {
      while (!place_meeting(x, y+sign(vspd), obj_wall))
      {
-          y+= sign(vspd);
+          y += sign(vspd);
      }
      vspd = 0;
 }
@@ -119,9 +139,15 @@ if (place_meeting(x, y+1, obj_wall) &amp;&amp; !place_meeting(x, yprevious+1, ob
      draw_yscale = .75;
      draw_xscale = 1.25;
 }
-
-
-
+/*
+var tmpBulb = instance_nearest(x,y,obj_lightbulb);
+if (!collision_line(tmpBulb.x,tmpBulb.y,x,y,obj_wall,false,true))
+{
+//shadAng = point_direction(tmpBulb.x,tmpBulb.y,x,y);
+shadAng = point_direction(x,y,tmpBulb.x,tmpBulb.y) + 90;
+shadAng = fixDir(shadAng);
+}
+*/
 </string>
           </argument>
         </arguments>
@@ -145,7 +171,12 @@ if (place_meeting(x, y+1, obj_wall) &amp;&amp; !place_meeting(x, yprevious+1, ob
           <argument>
             <kind>1</kind>
             <string>/// Draw the player squish and stretch
+//draw_sprite_ext(sprite_index, 0, x, y-5, draw_xscale, draw_yscale*0.7, shadAng, image_blend, image_alpha*.6);
+
 draw_sprite_ext(sprite_index, image_index, x, y, draw_xscale, draw_yscale, image_angle, image_blend, image_alpha);
+
+
+draw_sprite_ext(spr_dir, runDir, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 
 
 </string>

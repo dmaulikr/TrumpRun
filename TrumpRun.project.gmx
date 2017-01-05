@@ -9,16 +9,24 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
+    <sprite>sprites\spr_dir</sprite>
     <sprite>sprites\spr_wall</sprite>
     <sprite>sprites\spr_lightbulb</sprite>
     <sprite>sprites\spr_ui_exit</sprite>
-    <sprite>sprites\spr_ui_quit</sprite>
+    <sprite>sprites\spr_obs_spike</sprite>
+    <sprite>sprites\spr_lava_base</sprite>
+    <sprite>sprites\spr_lava_top</sprite>
+    <sprite>sprites\spr_tmp</sprite>
+    <sprite>sprites\spr_fire</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_bordered_text.gml</script>
     <script>scripts\scr_blood_ps.gml</script>
+    <script>scripts\fixDir.gml</script>
+    <script>scripts\scr_fire.gml</script>
+    <script>scripts\scr_fire_disable.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -26,7 +34,13 @@
     <object>objects\obj_ps</object>
     <object>objects\obj_light_control</object>
     <object>objects\obj_lighting</object>
+    <object>objects\obj_main</object>
     <object>objects\obj_lightbulb</object>
+    <object>objects\obj_lava_top</object>
+    <object>objects\obj_lava_base</object>
+    <object>objects\obj_obstacle_hurt</object>
+    <object>objects\obj_spike</object>
+    <object>objects\obj_fire</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
