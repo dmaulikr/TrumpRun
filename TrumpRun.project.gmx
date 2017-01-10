@@ -21,6 +21,11 @@
     <sprite>sprites\spr_fire</sprite>
     <sprite>sprites\spr_tmp</sprite>
     <sprite>sprites\spr_tmp2</sprite>
+    <sprite>sprites\spr_avatar_stand</sprite>
+    <sprite>sprites\spr_avatar_jump</sprite>
+    <sprite>sprites\spr_avatar_walk</sprite>
+    <sprite>sprites\spr_avatar_swing</sprite>
+    <sprite>sprites\spr_sword_hit</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -30,10 +35,13 @@
     <script>scripts\fixDir.gml</script>
     <script>scripts\scr_fire.gml</script>
     <script>scripts\scr_fire_disable.gml</script>
+    <script>scripts\scr_collision.gml</script>
+    <script>scripts\script_scale_canvas.gml</script>
   </scripts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
+    <object>objects\obj_parallax</object>
     <object>objects\obj_ps</object>
     <object>objects\obj_light_control</object>
     <object>objects\obj_lighting</object>
@@ -44,6 +52,10 @@
     <object>objects\obj_obstacle_hurt</object>
     <object>objects\obj_spike</object>
     <object>objects\obj_fire</object>
+    <object>objects\obj_enemy</object>
+    <object>objects\obj_sword_hit</object>
+    <object>objects\obj_camera</object>
+    <object>objects\obj_scale_canvas_controller</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
