@@ -26,6 +26,20 @@
     <sprite>sprites\spr_avatar_walk</sprite>
     <sprite>sprites\spr_avatar_swing</sprite>
     <sprite>sprites\spr_sword_hit</sprite>
+    <sprite>sprites\spr_torso_suit_side</sprite>
+    <sprite>sprites\spr_trump_arm</sprite>
+    <sprite>sprites\spr_trump_arm2</sprite>
+    <sprite>sprites\spr_trump_head_side</sprite>
+    <sprite>sprites\sprite22</sprite>
+    <sprite>sprites\trump_walk</sprite>
+    <sprite>sprites\trump_idle</sprite>
+    <sprite>sprites\trump_collision</sprite>
+    <sprite>sprites\trump_swing</sprite>
+    <sprite>sprites\trump_jump</sprite>
+    <sprite>sprites\spr_hair1</sprite>
+    <sprite>sprites\spr_hair2</sprite>
+    <sprite>sprites\sprite31</sprite>
+    <sprite>sprites\sprite32</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -56,6 +70,7 @@
     <object>objects\obj_sword_hit</object>
     <object>objects\obj_camera</object>
     <object>objects\obj_scale_canvas_controller</object>
+    <object>objects\obj_hair</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
