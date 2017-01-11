@@ -40,8 +40,12 @@
     <sprite>sprites\spr_hair2</sprite>
     <sprite>sprites\sprite31</sprite>
     <sprite>sprites\sprite32</sprite>
+    <sprite>sprites\spr_arrow</sprite>
+    <sprite>sprites\spr_321</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_bordered_text.gml</script>
@@ -52,6 +56,9 @@
     <script>scripts\scr_collision.gml</script>
     <script>scripts\script_scale_canvas.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\fnt_vinegar</font>
+  </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
     <object>objects\obj_wall</object>
@@ -71,6 +78,9 @@
     <object>objects\obj_camera</object>
     <object>objects\obj_scale_canvas_controller</object>
     <object>objects\obj_hair</object>
+    <object>objects\obj_arrow</object>
+    <object>objects\obj_countdown</object>
+    <object>objects\obj_loser</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>
