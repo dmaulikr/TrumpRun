@@ -3,8 +3,8 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
-  <persistent>-1</persistent>
+  <depth>-9999</depth>
+  <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
@@ -25,9 +25,41 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Creation code
+            <string>///Creation
+direction = 0;
+image_speed = 0;
+image_angle = 0;
+alarm[0] = room_speed*5;
+motion_set(random(359),random_range(1,2));
 
-global.loaded = false;
+//x = (view_wview[0])/2;
+//y = (view_hview[0])/2;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///destroy
+game_restart();
+instance_destroy();
 
 </string>
           </argument>
@@ -51,11 +83,8 @@ global.loaded = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>with (obj_lava_base)
-{
-//    if (distance_to_object(obj_player) &gt; 500) instance_deactivate_object(self);
-//    else instance_activate_object(self);
-}
+            <string>///for swirling motion
+direction += 1;
 
 </string>
           </argument>
@@ -107,6 +136,37 @@ instance_destroy();
             <string>/// Clean
 
 instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///
+draw_set_font(font_ui_winner);
+draw_set_color(c_green);
+//draw_text_ext_transformed(x,y,"You lost!",0,0,image_xscale,image_yscale,direction);
+
+//draw_text((view_wview[0])/2,(view_hview[0])/2,"You lost!");
+draw_text(x,y,"You lost!");
+
 
 </string>
           </argument>

@@ -69,6 +69,7 @@
     <font>fonts\font_ui_medium</font>
     <font>fonts\font_ui_large</font>
     <font>fonts\font_ui_cash</font>
+    <font>fonts\font_ui_winner</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -92,6 +93,7 @@
     <object>objects\obj_arrow</object>
     <object>objects\obj_countdown</object>
     <object>objects\obj_loser</object>
+    <object>objects\obj_winner</object>
     <object>objects\obj_textfloat</object>
   </objects>
   <rooms name="rooms">

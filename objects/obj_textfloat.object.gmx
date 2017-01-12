@@ -117,7 +117,8 @@ if (fadeout &lt;= 0) instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>///Destroy
+instance_destroy();
 
 </string>
           </argument>

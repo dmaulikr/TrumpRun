@@ -28,18 +28,21 @@
             <string>/// Initialize variables
 randomize();
 
+health = 100;
 global.turn = 5;
 lives = 3;
 score = 0;
 
-check_x = room_speed*5;
+time_x = room_speed*5;
+check_x = time_x;
 last_x = x;
+
 
 //last_check_x = x;
 
-grav = 0.4;      // gravity
-spd = 6;        // player speed
-jspd = 10;      // jump speed
+grav = 0.3;      // gravity
+spd = 4;        // player speed
+jspd = 8;      // jump speed
 
 maxJumps = 2;   // double/triple jumps
 numJumps = 0;   //
@@ -94,11 +97,11 @@ attacking = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if this_check_x == last_check_x
-{
+            <string>//if this_check_x == last_check_x
+//{
 
-}
-alarm[0] = room_speed*5;
+//}
+//alarm[0] = room_speed*5;
 
 </string>
           </argument>
@@ -295,7 +298,7 @@ if (!instance_exists(obj_loser)) &amp;&amp; (!instance_exists(obj_countdown))
     }
     else                // reset stuck, player moved
     {
-        check_x = room_speed*5;
+        check_x = time_x;
     }
 }
 
@@ -472,6 +475,31 @@ if (attacking)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Destroy
+instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="4">
       <action>
         <libid>1</libid>
@@ -494,7 +522,33 @@ global.turn = 5;
 health = 100;
 score = 0;
 //alarm[0] = room_speed*5;
-check_x = room_speed*5;
+check_x = time_x;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// Clean
+
+instance_destroy();
 
 </string>
           </argument>
@@ -556,13 +610,17 @@ draw_text(5,72,"x:" + string(x));
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/// Draw the player squish and stretch
+            <string>/// Draw the player
 //draw_sprite_ext(sprite_index, 0, x, y-5, draw_xscale, draw_yscale*0.7, shadAng, image_blend, image_alpha*.6);
 
 //draw_sprite_ext(sprite_index, image_index, x, y, draw_xscale, draw_yscale, image_angle, image_blend, image_alpha);
 draw_self();
 draw_healthbar(x-25,y-120,x+25,y-115,health,c_black,c_red,c_green,0,true,false);
 
+if (check_x &lt; time_x)
+{
+draw_healthbar(x-25,y-130,x+25,y-125,(check_x/time_x)*100,c_black,c_red,c_blue,0,true,false);
+}
 
 //draw_sprite_ext(spr_dir, runDir, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 

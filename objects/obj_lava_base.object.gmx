@@ -104,6 +104,7 @@ if (part_emitter_exists(flow,wound))
 if (part_system_exists(flow))
     part_system_destroy(flow);
 
+instance_destroy();
 </string>
           </argument>
         </arguments>
@@ -138,6 +139,8 @@ if (part_emitter_exists(flow,wound))
 
 if (part_system_exists(flow))
     part_system_destroy(flow);
+
+instance_destroy();
 
 </string>
           </argument>
