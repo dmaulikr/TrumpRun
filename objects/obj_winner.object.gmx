@@ -165,7 +165,7 @@ draw_set_color(c_green);
 //draw_text_ext_transformed(x,y,"You lost!",0,0,image_xscale,image_yscale,direction);
 
 //draw_text((view_wview[0])/2,(view_hview[0])/2,"You lost!");
-draw_text(x,y,"You lost!");
+draw_text(x,y,"You won!");
 
 
 </string>

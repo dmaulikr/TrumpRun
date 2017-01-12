@@ -10,29 +10,6 @@
     <sound>sound\music_industrial</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_player</sprite>
-    <sprite>sprites\spr_dir</sprite>
-    <sprite>sprites\spr_wall</sprite>
-    <sprite>sprites\spr_lightbulb</sprite>
-    <sprite>sprites\spr_ui_exit</sprite>
-    <sprite>sprites\spr_obs_spike</sprite>
-    <sprite>sprites\spr_lava_base</sprite>
-    <sprite>sprites\spr_water_base</sprite>
-    <sprite>sprites\spr_lava_top</sprite>
-    <sprite>sprites\spr_water_top</sprite>
-    <sprite>sprites\spr_fire</sprite>
-    <sprite>sprites\spr_tmp</sprite>
-    <sprite>sprites\spr_tmp2</sprite>
-    <sprite>sprites\spr_avatar_stand</sprite>
-    <sprite>sprites\spr_avatar_jump</sprite>
-    <sprite>sprites\spr_avatar_walk</sprite>
-    <sprite>sprites\spr_avatar_swing</sprite>
-    <sprite>sprites\spr_sword_hit</sprite>
-    <sprite>sprites\spr_torso_suit_side</sprite>
-    <sprite>sprites\spr_trump_arm</sprite>
-    <sprite>sprites\spr_trump_arm2</sprite>
-    <sprite>sprites\spr_trump_head_side</sprite>
-    <sprite>sprites\sprite22</sprite>
     <sprite>sprites\trump_walk</sprite>
     <sprite>sprites\trump_idle</sprite>
     <sprite>sprites\trump_collision</sprite>
@@ -40,19 +17,55 @@
     <sprite>sprites\trump_jump</sprite>
     <sprite>sprites\spr_hair1</sprite>
     <sprite>sprites\spr_hair2</sprite>
-    <sprite>sprites\sprite31</sprite>
-    <sprite>sprites\sprite32</sprite>
+    <sprite>sprites\spr_hair1_large</sprite>
+    <sprite>sprites\spr_hair2_large</sprite>
     <sprite>sprites\spr_arrow</sprite>
     <sprite>sprites\spr_arrow_45</sprite>
     <sprite>sprites\spr_321</sprite>
+    <sprite>sprites\spr_ui_exit</sprite>
+    <sprite>sprites\spr_coin</sprite>
+    <sprites name="Separated">
+      <sprite>sprites\spr_trump_leg_foot</sprite>
+      <sprite>sprites\spr_trump_head_side</sprite>
+      <sprite>sprites\spr_torso_suit_side</sprite>
+      <sprite>sprites\spr_trump_upper_arm</sprite>
+      <sprite>sprites\spr_trump_lower_arm</sprite>
+    </sprites>
+    <sprites name="Environment">
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_obs_spike</sprite>
+      <sprite>sprites\spr_lightbulb</sprite>
+      <sprite>sprites\spr_fire</sprite>
+      <sprite>sprites\spr_water_base</sprite>
+      <sprite>sprites\spr_water_top</sprite>
+      <sprite>sprites\spr_lava_base</sprite>
+      <sprite>sprites\spr_lava_top</sprite>
+    </sprites>
+    <sprites name="Enemy">
+      <sprite>sprites\spr_avatar_stand</sprite>
+      <sprite>sprites\spr_avatar_jump</sprite>
+      <sprite>sprites\spr_avatar_walk</sprite>
+      <sprite>sprites\spr_avatar_swing</sprite>
+      <sprite>sprites\spr_sword_hit</sprite>
+    </sprites>
+    <sprites name="Deprecated">
+      <sprite>sprites\spr_tmp2</sprite>
+      <sprite>sprites\spr_tmp</sprite>
+      <sprite>sprites\spr_dir</sprite>
+      <sprite>sprites\spr_player</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\path_rm_test</path>
+    <path>paths\path_rm_enemy</path>
+  </paths>
   <scripts name="scripts">
     <script>scripts\scr_bordered_text.gml</script>
     <script>scripts\scr_blood_ps.gml</script>
+    <script>scripts\scr_spark_ps.gml</script>
     <script>scripts\fixDir.gml</script>
     <script>scripts\scr_fire.gml</script>
     <script>scripts\scr_fire_disable.gml</script>
@@ -73,28 +86,31 @@
   </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
+    <object>objects\obj_enemy</object>
     <object>objects\obj_wall</object>
     <object>objects\obj_parallax</object>
     <object>objects\obj_ps</object>
+    <object>objects\obj_ps_spark</object>
     <object>objects\obj_light_control</object>
     <object>objects\obj_lighting</object>
     <object>objects\obj_main</object>
+    <object>objects\obj_scale_canvas_controller</object>
     <object>objects\obj_lightbulb</object>
     <object>objects\obj_lava_top</object>
     <object>objects\obj_lava_base</object>
     <object>objects\obj_obstacle_hurt</object>
     <object>objects\obj_spike</object>
     <object>objects\obj_fire</object>
-    <object>objects\obj_enemy</object>
     <object>objects\obj_sword_hit</object>
     <object>objects\obj_camera</object>
-    <object>objects\obj_scale_canvas_controller</object>
     <object>objects\obj_hair</object>
+    <object>objects\obj_chase</object>
     <object>objects\obj_arrow</object>
     <object>objects\obj_countdown</object>
     <object>objects\obj_loser</object>
     <object>objects\obj_winner</object>
     <object>objects\obj_textfloat</object>
+    <object>objects\obj_coin</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

@@ -82,7 +82,8 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>direction += 1;
+            <string>///Swirling motion
+direction += 1;
 
 </string>
           </argument>

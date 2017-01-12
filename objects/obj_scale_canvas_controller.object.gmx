@@ -30,6 +30,7 @@ base_width = view_wview[0];
 base_height = view_hview[0];
 width = base_width;
 height = base_height;
+
 </string>
           </argument>
         </arguments>

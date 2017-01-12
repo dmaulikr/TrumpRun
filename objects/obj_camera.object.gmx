@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//These following two values establish the default view scale as a reference point
+            <string>///Camera create
+//These following two values establish the default view scale as a reference point
 window_max_w = view_wview;
 window_max_h = view_hview;
 
@@ -54,7 +55,7 @@ zoom_speed = 50;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//panning
+            <string>///Panning
 
 //when the mouse button is pressed, it captures the values of the mouse's X and Y position.
 //Because the view is going to be moved, we want the position of the mouse in relation to

@@ -29,6 +29,10 @@
 randomize();
 
 health = 100;
+globalvar cash;
+
+cash = 0;
+
 global.turn = 5;
 lives = 3;
 score = 0;
@@ -97,7 +101,9 @@ attacking = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//if this_check_x == last_check_x
+            <string>///Alarm 0 - deprecated
+
+//if this_check_x == last_check_x
 //{
 
 //}
@@ -288,6 +294,16 @@ if (place_meeting(x, y+1, obj_wall) &amp;&amp; !place_meeting(x, yprevious+1, ob
     {
      draw_xscale = -1.25;
     }
+}
+
+if (place_meeting(x, y+1, obj_enemy)) &amp;&amp; (!place_meeting(x,y,obj_enemy))
+{
+    var insta = instance_place(x,y+1,obj_enemy);
+    if (instance_exists(insta))
+    {
+        insta.hp -= 50;
+    }
+    vspd = -jspd;
 }
 
 if (!instance_exists(obj_loser)) &amp;&amp; (!instance_exists(obj_countdown))
@@ -517,7 +533,7 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///
+            <string>///Reset the room
 global.turn = 5;
 health = 100;
 score = 0;
@@ -547,7 +563,6 @@ check_x = time_x;
           <argument>
             <kind>1</kind>
             <string>/// Clean
-
 instance_destroy();
 
 </string>
@@ -582,11 +597,11 @@ draw_text(5, 12,"Score:" + string(score));
 
 draw_text(5,24,"Lives:" + string(lives));
 
-draw_text(5,36,"Turn-arounds:" + string(global.turn));
+draw_text(5,36,"Turn-Around:" + string(global.turn));
 
-draw_text(5,48,"check-x:" + string(check_x));
-draw_text(5,60,"last-x:" + string(last_x));
-draw_text(5,72,"x:" + string(x));
+//draw_text(5,48,"check-x:" + string(check_x));
+//draw_text(5,60,"last-x:" + string(last_x));
+//draw_text(5,72,"x:" + string(x));
 
 </string>
           </argument>
@@ -617,7 +632,7 @@ draw_text(5,72,"x:" + string(x));
 draw_self();
 draw_healthbar(x-25,y-120,x+25,y-115,health,c_black,c_red,c_green,0,true,false);
 
-if (check_x &lt; time_x)
+if (check_x &lt; (time_x - 10))
 {
 draw_healthbar(x-25,y-130,x+25,y-125,(check_x/time_x)*100,c_black,c_red,c_blue,0,true,false);
 }
@@ -625,44 +640,6 @@ draw_healthbar(x-25,y-130,x+25,y-125,(check_x/time_x)*100,c_black,c_red,c_blue,0
 //draw_sprite_ext(spr_dir, runDir, x, y, image_xscale, image_yscale, image_angle, image_blend, image_alpha);
 
 
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="9" enumb="32">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Attack animation
-
-if !attacking
-{
-     attacking = true;
-//     sprite_index = spr_avatar_swing;
-     sprite_index = trump_swing;
-     image_index = 0;
-     image_speed = 0.25
-//    with instance_create(x, y, obj_sword_hit)
-    with instance_create(x,y-110,obj_hair)
-    {
-         image_xscale = obj_player.image_xscale
-    }
-}
 
 </string>
           </argument>
