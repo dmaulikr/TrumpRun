@@ -28,6 +28,15 @@
             <string>/// Initialize variables
 randomize();
 
+global.turn = 5;
+lives = 3;
+score = 0;
+
+check_x = room_speed*5;
+last_x = x;
+
+//last_check_x = x;
+
 grav = 0.4;      // gravity
 spd = 6;        // player speed
 jspd = 10;      // jump speed
@@ -44,8 +53,11 @@ draw_yscale = image_yscale;
 
 attacking = false;
 
-
 image_speed = 0.16;
+
+//snd=audio_create_stream("music/industrial_cinematic.ogg");
+//audio_play_sound(music_industrial,2,true);
+
 
 /*
 
@@ -60,6 +72,34 @@ normal_grav = 1;
 image_speed = 0.16;
 attacking = false;
 */
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if this_check_x == last_check_x
+{
+
+}
+alarm[0] = room_speed*5;
+
 </string>
           </argument>
         </arguments>
@@ -85,9 +125,27 @@ attacking = false;
             <string>///Movement
 
 //var hspd = (keyboard_check(vk_right) - keyboard_check(vk_left)) * spd;
-
-if (runDir = 0) &amp;&amp; (!instance_exists(obj_countdown)) hspd = spd;
-else if (runDir = 1) &amp;&amp; (!instance_exists(obj_countdown)) hspd = -spd;
+if (!instance_exists(obj_loser)) {
+    if (!instance_exists(obj_countdown))
+    {
+        if (runDir = 0) // running right
+        {
+            hspd = spd;
+        }
+        else if (runDir = 1) // running left
+        {
+            hspd = -spd;
+        }
+        if (health &lt;= 0)    // died from injuries
+        {
+            instance_create(x,y,obj_loser);
+        }
+        if (check_x &lt;= 0)   // player was stuck for 5 seconds, die
+        {
+            instance_create(x,y,obj_loser);
+        }
+    }
+}
 
 var jkey = false;
 
@@ -117,7 +175,6 @@ if (place_meeting(x, y+1, obj_wall))
         }
         else if (keyboard_check_released(vk_up))
         {
-//            sprite_index = spr_avatar_jump;
             sprite_index = trump_jump;
             vspd = -jspd;
             draw_yscale = 1.5;
@@ -194,10 +251,11 @@ x += hspd;
 // Vertical collisions
 if (place_meeting(x, y+vspd, obj_wall))
 {
-     while (!place_meeting(x, y+sign(vspd), obj_wall)) {
-          y += sign(vspd);
-     }
-     vspd = 0;
+    while (!place_meeting(x, y+sign(vspd), obj_wall)) 
+    {
+        y += sign(vspd);
+    }
+    vspd = 0;
 }
 // Move vertically
 y += vspd;
@@ -206,28 +264,42 @@ y += vspd;
 // Ease the scale
 if (runDir == 0)
 {
-draw_xscale = lerp(draw_xscale, image_xscale, .1);
-draw_yscale = lerp(draw_yscale, image_yscale, .1);
+    draw_xscale = lerp(draw_xscale, image_xscale, .1);
+    draw_yscale = lerp(draw_yscale, image_yscale, .1);
 }
 else
 {
-draw_xscale = lerp(draw_xscale, image_xscale, .1);
-draw_yscale = lerp(draw_yscale, image_yscale, .1);
+    draw_xscale = lerp(draw_xscale, image_xscale, .1);
+    draw_yscale = lerp(draw_yscale, image_yscale, .1);
 }
+
 // Scale on landing
 if (place_meeting(x, y+1, obj_wall) &amp;&amp; !place_meeting(x, yprevious+1, obj_wall))
 {
+    draw_yscale = 0.75;
     if (runDir == 0)
     {
-     draw_yscale = 0.75;
      draw_xscale = 1.25;
     }
     else
     {
-     draw_yscale = 0.75;
      draw_xscale = -1.25;
     }
 }
+
+if (!instance_exists(obj_loser)) &amp;&amp; (!instance_exists(obj_countdown))
+{
+    if (x == last_x) // check stuck, player stationary
+    {
+        check_x -= 1;
+    }
+    else                // reset stuck, player moved
+    {
+        check_x = room_speed*5;
+    }
+}
+
+last_x = x;
 
  /*
 
@@ -334,6 +406,44 @@ if (place_meeting(x-1,y,obj_wall)) &amp;&amp; (!place_meeting(x+1,y,obj_wall))
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Clicking on the player activates this
+if (global.turn &gt; 0)
+{
+    // Spin around sound here
+
+    //decrement the global turn counter
+    global.turn -= 1;
+
+    //Trun around
+    runDir = !runDir;
+}
+else
+{
+    // Denial sound here
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="7" enumb="7">
       <action>
         <libid>1</libid>
@@ -362,6 +472,35 @@ if (attacking)
         </arguments>
       </action>
     </event>
+    <event eventtype="7" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///
+global.turn = 5;
+health = 100;
+score = 0;
+//alarm[0] = room_speed*5;
+check_x = room_speed*5;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
@@ -380,9 +519,20 @@ if (attacking)
           <argument>
             <kind>1</kind>
             <string>/// Draw score on screen
-
+draw_set_font(fnt_vinegar_12);
+draw_set_valign(fa_center);
+draw_set_halign(fa_left);
 draw_set_color(c_white);
-draw_text(5, 5, string(score));
+
+draw_text(5, 12,"Score:" + string(score));
+
+draw_text(5,24,"Lives:" + string(lives));
+
+draw_text(5,36,"Turn-arounds:" + string(global.turn));
+
+draw_text(5,48,"check-x:" + string(check_x));
+draw_text(5,60,"last-x:" + string(last_x));
+draw_text(5,72,"x:" + string(x));
 
 </string>
           </argument>

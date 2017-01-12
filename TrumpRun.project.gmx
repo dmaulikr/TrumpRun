@@ -6,7 +6,9 @@
   <NewExtensions>
     <extension index="0">extensions\GoogleAnalyticsExt</extension>
   </NewExtensions>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\music_industrial</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_player</sprite>
     <sprite>sprites\spr_dir</sprite>
@@ -41,6 +43,7 @@
     <sprite>sprites\sprite31</sprite>
     <sprite>sprites\sprite32</sprite>
     <sprite>sprites\spr_arrow</sprite>
+    <sprite>sprites\spr_arrow_45</sprite>
     <sprite>sprites\spr_321</sprite>
   </sprites>
   <backgrounds name="background">
@@ -55,9 +58,17 @@
     <script>scripts\scr_fire_disable.gml</script>
     <script>scripts\scr_collision.gml</script>
     <script>scripts\script_scale_canvas.gml</script>
+    <script>scripts\scr_textfloat.gml</script>
+    <script>scripts\scr_textfloat_ext.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_vinegar</font>
+    <font>fonts\fnt_vinegar_8</font>
+    <font>fonts\fnt_vinegar_12</font>
+    <font>fonts\font_ui_small</font>
+    <font>fonts\font_ui_medium</font>
+    <font>fonts\font_ui_large</font>
+    <font>fonts\font_ui_cash</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_player</object>
@@ -81,6 +92,7 @@
     <object>objects\obj_arrow</object>
     <object>objects\obj_countdown</object>
     <object>objects\obj_loser</object>
+    <object>objects\obj_textfloat</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_test</room>

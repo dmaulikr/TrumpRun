@@ -137,7 +137,7 @@ lerpY = lerp(lerpY,image_yscale,0.1);
           <argument>
             <kind>1</kind>
             <string>///Draw
-draw_sprite_ext(sprite_index,image_index,x,y,lerpX,lerpY,image_angle,image_blend,image_alpha);
+draw_sprite_ext(sprite_index,image_index,view_wview[0]/2,view_hview[0]/2,lerpX,lerpY,image_angle,image_blend,image_alpha);
 
 </string>
           </argument>
