@@ -36,6 +36,11 @@ damage = 10;
 //scr_fire(x+16,y);
 //enabled = true;
 
+
+//formovement
+//movement = random(pi*2);
+//value = 0.027 + random(0.005);
+
 </string>
           </argument>
         </arguments>
@@ -59,6 +64,16 @@ damage = 10;
           <argument>
             <kind>1</kind>
             <string>///Step
+/*  cool movement
+movement += value*60/room_speed;
+
+if movement &gt;= pi*2
+movement = 0;
+
+x += lengthdir_x(sin(movement)*2,image_angle);
+y += lengthdir_y(sin(movement)*2,image_angle);
+*/
+
 /*if (distance_to_object(obj_player) &gt; 500) &amp;&amp; (enabled)
 {
     enabled = false;

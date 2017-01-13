@@ -63,8 +63,7 @@ attacking = false;
 image_speed = 0.16;
 
 //snd=audio_create_stream("music/industrial_cinematic.ogg");
-audio_play_sound(music_industrial,9,true);
-
+music = -1;
 
 /*
 
@@ -79,6 +78,56 @@ normal_grav = 1;
 image_speed = 0.16;
 attacking = false;
 */
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>801</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_cursor</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>5</kind>
+            <sprite>s_cursor</sprite>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>0</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Stop the damn music
+
+audio_stop_sound(music);
+
 </string>
           </argument>
         </arguments>
@@ -463,6 +512,10 @@ else
           <argument>
             <kind>1</kind>
             <string>///Destroy
+
+//music = audio_play_sound(music_industrial,9,true);
+audio_stop_sound(music);
+
 instance_destroy();
 
 </string>
@@ -488,6 +541,9 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>///Reset the room
+
+music = audio_play_sound(music_industrial,9,true);
+
 global.turn = 5;
 health = 100;
 score = 0;
@@ -520,6 +576,9 @@ check_x = time_x;
           <argument>
             <kind>1</kind>
             <string>/// Clean
+
+audio_stop_sound(music);
+
 instance_destroy();
 
 </string>
