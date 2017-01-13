@@ -57,6 +57,9 @@ score += 5;
 scr_textfloat(other.x,other.y,c_yellow,"+5");
 obj_player.runDir = !obj_player.runDir;
 
+audio_play_sound(snd_spark,9,false);
+
+
 if (part_system_exists(global.ps))
 {
     part_particles_create(global.spark, other.x, other.y, global.pt_spark, 10);
@@ -113,6 +116,31 @@ instance_destroy();
             <kind>1</kind>
             <string>/// Clean
 
+instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Destroy when leaving bounds
 instance_destroy();
 
 </string>

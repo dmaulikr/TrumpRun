@@ -29,11 +29,13 @@
 
 //Variable
 coin_value = 5;
-coin_speed = 3;
+coin_speed = 4;
 
 //Settings
 image_speed = 1.0;
 image_index = 0;
+mask_index = sprite_index;
+
 
 //Colors
 c_moneygreen = make_color_rgb(6,92,39);
@@ -64,9 +66,27 @@ c_evilgreen = make_color_rgb(3,54,23);
             <string>///Step code
 if (instance_exists(obj_player))
 {
-    if (distance_to_object(obj_player) &lt; 30) 
+    if (speed != 0)
     {
-        move_towards_point(obj_player.x,obj_player.y,3);
+        if (distance_to_point(obj_player.x,obj_player.y) &lt; 25)
+        {
+            cash += coin_value;
+            scr_textfloat(other.x,other.y,c_moneygreen,"$5");
+            audio_play_sound(snd_spark,9,false);
+            if (part_system_exists(global.ps))
+            {
+                part_particles_create(global.spark, other.x, other.y, global.pt_spark, 10);
+            }
+            instance_destroy();
+        }
+        mp_potential_step(obj_player.x,obj_player.y,coin_speed,false);
+    }
+    else
+    {
+        if (distance_to_object(obj_player) &lt; 30) 
+        {
+            move_towards_point(obj_player.x,obj_player.y,coin_speed);
+        }
     }
 }
 move_bounce_all(false);
@@ -93,14 +113,67 @@ move_bounce_all(false);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///
+            <string>///Collide with player
 cash += coin_value;
 scr_textfloat(other.x,other.y,c_moneygreen,"$5");
+
+audio_play_sound(snd_spark,9,false);
+
 if (part_system_exists(global.ps))
 {
     part_particles_create(global.spark, other.x, other.y, global.pt_spark, 10);
 }
 
+instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Destroy
+instance_destroy();
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Destroy
 instance_destroy();
 
 </string>
@@ -125,7 +198,8 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>instance_destroy();
+            <string>///Destroy when leaving bounds
+instance_destroy();
 
 </string>
           </argument>

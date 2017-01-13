@@ -32,6 +32,9 @@ image_angle = 0;
 alarm[0] = room_speed*5;
 motion_set(random(359),irandom_range(1,2));
 
+audio_play_sound(snd_loser,9,false);
+
+
 //x = (view_wview[0])/2;
 //y = (view_hview[0])/2;
 

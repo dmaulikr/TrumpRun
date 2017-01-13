@@ -32,6 +32,8 @@ alarm[0] = room_speed * 3;
 lerpX = 1;
 lerpY = 1;
 
+audio_play_sound(snd_countdown,9,false);
+
 </string>
           </argument>
         </arguments>

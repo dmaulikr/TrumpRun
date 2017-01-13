@@ -8,6 +8,15 @@
   </NewExtensions>
   <sounds name="sound">
     <sound>sound\music_industrial</sound>
+    <sound>sound\snd_trump_jump</sound>
+    <sound>sound\snd_trump_landing</sound>
+    <sound>sound\snd_winner1</sound>
+    <sound>sound\snd_loser</sound>
+    <sound>sound\snd_trump_landing_hard</sound>
+    <sound>sound\snd_gust</sound>
+    <sound>sound\snd_countdown</sound>
+    <sound>sound\snd_coin</sound>
+    <sound>sound\snd_spark</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\trump_walk</sprite>
@@ -95,21 +104,23 @@
     <object>objects\obj_lighting</object>
     <object>objects\obj_main</object>
     <object>objects\obj_scale_canvas_controller</object>
+    <object>objects\obj_camera</object>
+    <object>objects\obj_textfloat</object>
+    <object>objects\obj_loser</object>
+    <object>objects\obj_winner</object>
+    <object>objects\obj_obstacle_hurt</object>
     <object>objects\obj_lightbulb</object>
     <object>objects\obj_lava_top</object>
+    <object>objects\obj_water_top</object>
     <object>objects\obj_lava_base</object>
-    <object>objects\obj_obstacle_hurt</object>
+    <object>objects\obj_water_base</object>
     <object>objects\obj_spike</object>
     <object>objects\obj_fire</object>
     <object>objects\obj_sword_hit</object>
-    <object>objects\obj_camera</object>
     <object>objects\obj_hair</object>
     <object>objects\obj_chase</object>
     <object>objects\obj_arrow</object>
     <object>objects\obj_countdown</object>
-    <object>objects\obj_loser</object>
-    <object>objects\obj_winner</object>
-    <object>objects\obj_textfloat</object>
     <object>objects\obj_coin</object>
   </objects>
   <rooms name="rooms">

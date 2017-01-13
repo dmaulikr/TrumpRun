@@ -44,9 +44,9 @@ last_x = x;
 
 //last_check_x = x;
 
-grav = 0.3;      // gravity
+grav = 0.4;      // gravity
 spd = 4;        // player speed
-jspd = 8;      // jump speed
+jspd = 7;      // jump speed
 
 maxJumps = 2;   // double/triple jumps
 numJumps = 0;   //
@@ -63,7 +63,7 @@ attacking = false;
 image_speed = 0.16;
 
 //snd=audio_create_stream("music/industrial_cinematic.ogg");
-//audio_play_sound(music_industrial,2,true);
+audio_play_sound(music_industrial,9,true);
 
 
 /*
@@ -79,36 +79,6 @@ normal_grav = 1;
 image_speed = 0.16;
 attacking = false;
 */
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="2" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Alarm 0 - deprecated
-
-//if this_check_x == last_check_x
-//{
-
-//}
-//alarm[0] = room_speed*5;
-
 </string>
           </argument>
         </arguments>
@@ -176,8 +146,9 @@ if (place_meeting(x, y+1, obj_wall))
 {
      vspd = 0;
 //     var jkey = keyboard_check_pressed(vk_up);
-    if (hspd == 0)
-    {
+  //  if (hspd == 0)
+  //  {
+/*
         if (keyboard_check(vk_up))
         {
             jspd += 0.1;
@@ -202,16 +173,19 @@ if (place_meeting(x, y+1, obj_wall))
             {
                 if (hspd != 0) { sprite_index = trump_walk; image_speed = 0.2}
                 else { sprite_index = trump_idle; image_speed = 0.1}
-
             }
             numJumps = 0;
-        }
-    }
-    else
-    {
-        if keyboard_check_pressed(vk_up)
+        }*/
+  //  }
+//    else
+ //   {
+//        if keyboard_check_pressed(vk_up)
+        if (mouse_check_button_pressed(mb_left))
         {
             sprite_index = trump_jump;
+            
+            audio_play_sound(snd_trump_jump,9,false);
+
             vspd = -jspd;
             draw_yscale = 1.5;
             if (runDir == 0) {draw_xscale = 0.75;}
@@ -228,7 +202,7 @@ if (place_meeting(x, y+1, obj_wall))
             }
             numJumps = 0;
         }
-    }
+   // }
 }
 else
 {
@@ -237,8 +211,13 @@ else
     {
         vspd += grav;
     }
-    if (keyboard_check_pressed(vk_up)) &amp;&amp; (numJumps &lt; maxJumps)
+//    if (keyboard_check_pressed(vk_up)) &amp;&amp; (numJumps &lt; maxJumps)
+//    if (keyboard_check_pressed(vk_up)) &amp;&amp; (numJumps &lt; maxJumps)
+//    if (mouse_check_pressed(vk_up)) &amp;&amp; (numJumps &lt; maxJumps)
+    if(mouse_check_button_pressed(mb_left)) &amp;&amp; (numJumps &lt; maxJumps)
     {
+        sprite_index = trump_jump;
+        audio_play_sound(snd_trump_jump,9,false);
         numJumps += 1;
         vspd = -jspd;
     }
@@ -285,6 +264,9 @@ else
 // Scale on landing
 if (place_meeting(x, y+1, obj_wall) &amp;&amp; !place_meeting(x, yprevious+1, obj_wall))
 {
+    // audio
+    audio_play_sound(snd_trump_landing,9,false);
+
     draw_yscale = 0.75;
     if (runDir == 0)
     {
@@ -301,12 +283,12 @@ if (place_meeting(x, y+1, obj_enemy)) &amp;&amp; (!place_meeting(x,y,obj_enemy))
     var insta = instance_place(x,y+1,obj_enemy);
     if (instance_exists(insta))
     {
-        insta.hp -= 50;
+        insta.hp -= 100;
     }
     vspd = -jspd;
 }
 
-if (!instance_exists(obj_loser)) &amp;&amp; (!instance_exists(obj_countdown))
+if (!instance_exists(obj_loser)) &amp;&amp; (!instance_exists(obj_countdown)) &amp;&amp; (!instance_exists(obj_winner))
 {
     if (x == last_x) // check stuck, player stationary
     {
@@ -463,34 +445,6 @@ else
         </arguments>
       </action>
     </event>
-    <event eventtype="7" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// Attack
-if (attacking)
-{
-     attacking = false;
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="7" enumb="5">
       <action>
         <libid>1</libid>
@@ -539,6 +493,9 @@ health = 100;
 score = 0;
 //alarm[0] = room_speed*5;
 check_x = time_x;
+
+//
+//audio_play_sound(snd_trump_jump,9,false);
 
 </string>
           </argument>
@@ -595,9 +552,11 @@ draw_set_color(c_white);
 
 draw_text(5, 12,"Score:" + string(score));
 
-draw_text(5,24,"Lives:" + string(lives));
+draw_text(100,12,"Lives:" + string(lives));
 
-draw_text(5,36,"Turn-Around:" + string(global.turn));
+draw_text(200,12,"Turn-Around:" + string(global.turn));
+
+draw_text(350,12,"Cash:$" + string(cash));
 
 //draw_text(5,48,"check-x:" + string(check_x));
 //draw_text(5,60,"last-x:" + string(last_x));

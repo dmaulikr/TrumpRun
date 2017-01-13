@@ -31,6 +31,8 @@ chase_speed = 5;
 path_start(path_rm_test,chase_speed,path_action_stop,true);
 grab = true;
 
+audio_play_sound(snd_gust,9,false);
+
 </string>
           </argument>
         </arguments>

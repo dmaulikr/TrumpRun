@@ -32,9 +32,9 @@
 //wound=0;
 
 image_speed = 0.16;
-damage = 20;
-scr_fire(x+16,y);
-enabled = true;
+damage = 10;
+//scr_fire(x+16,y);
+//enabled = true;
 
 </string>
           </argument>
@@ -58,7 +58,8 @@ enabled = true;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>/*if (distance_to_object(obj_player) &gt; 500) &amp;&amp; (enabled)
+            <string>///Step
+/*if (distance_to_object(obj_player) &gt; 500) &amp;&amp; (enabled)
 {
     enabled = false;
     scr_fire_disable();
@@ -92,6 +93,7 @@ else if (distance_to_object(obj_player) &lt;= 500) &amp;&amp; (!enabled)
           <argument>
             <kind>1</kind>
             <string>///Cleanup
+/*
 if (part_type_exists(flame))
     part_type_destroy(flame);
 
@@ -103,7 +105,7 @@ if (part_emitter_exists(flow,wound))
 
 if (part_system_exists(flow))
     part_system_destroy(flow);
-
+*/
 instance_destroy();
 </string>
           </argument>
@@ -128,6 +130,7 @@ instance_destroy();
           <argument>
             <kind>1</kind>
             <string>///Cleanup
+/*
 if (part_type_exists(flame))
     part_type_destroy(flame);
 
@@ -139,7 +142,7 @@ if (part_emitter_exists(flow,wound))
 
 if (part_system_exists(flow))
     part_system_destroy(flow);
-
+*/
 instance_destroy();
 
 </string>
